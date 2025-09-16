@@ -1,0 +1,15 @@
+
+This simple program builds an executable by linking either mylib1 or
+mylib2 with strmain. The resulting executable is called strmain.
+
+To use mylib1 (the default):
+
+$ make clean
+$ make CHOICE=mylib1
+
+To use mylib2:
+
+$ make CHOICE=mylib2
+
+
+
