@@ -22,3 +22,5 @@
 #define SYS_close 21
 
 #define SYS_hello 22
+#define SYS_helloStr 23
+#define SYS_getNumProc 24

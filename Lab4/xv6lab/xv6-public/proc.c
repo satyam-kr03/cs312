@@ -532,3 +532,20 @@ procdump(void)
     cprintf("\n");
   }
 }
+
+// Added function to get number of active processes
+int
+getNumProc(void)
+{
+  int count = 0;
+  struct proc *p;
+  
+  acquire(&ptable.lock);
+  for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
+    if(p->state != UNUSED)
+      count++;
+  }
+  release(&ptable.lock);
+  
+  return count;
+}

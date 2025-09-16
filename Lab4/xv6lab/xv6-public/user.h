@@ -39,3 +39,5 @@ void free(void*);
 int atoi(const char*);
 
 int hello(void);
+int helloStr(char*);
+int getNumProc(void);

@@ -31,3 +31,5 @@ SYSCALL(sleep)
 SYSCALL(uptime)
 
 SYSCALL(hello)
+SYSCALL(helloStr)
+SYSCALL(getNumProc)

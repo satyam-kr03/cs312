@@ -98,3 +98,21 @@ sys_hello(void)
   cprintf("Hello, World!\n");
   return 0;
 }
+
+// Hello world system call with string argument
+int
+sys_helloStr(void)
+{
+  char *s;
+  if(argstr(0, &s) < 0)
+    return -1;
+  cprintf("Hello, %s!\n", s);
+  return 0;
+}
+
+// Get number of active processes
+int
+sys_getNumProc(void)
+{
+  return getNumProc();
+}

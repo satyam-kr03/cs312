@@ -32,6 +32,14 @@ int main(void)
 
   // Call the hello() system call
   hello();
+
+  // Call the helloStr() system call with a string argument
+  char *str = "Hello from helloStr system call!";
+  helloStr(str);
+  
+  // Get the number of active processes using getNumProc() system call
+  int numProc = getNumProc();
+  printf(1, "Number of active processes: %d\n", numProc);
   
   exit();
 }
