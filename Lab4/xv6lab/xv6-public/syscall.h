@@ -24,3 +24,5 @@
 #define SYS_hello 22
 #define SYS_helloStr 23
 #define SYS_getNumProc 24
+#define SYS_getMaxPid 25
+#define SYS_getProcInfo 26

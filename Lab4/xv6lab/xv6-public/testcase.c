@@ -41,6 +41,10 @@ int main(void)
   int numProc = getNumProc();
   printf(1, "Number of active processes: %d\n", numProc);
   
+  // Get the maximum PID among active processes using getMaxPid() system call
+  int maxPid = getMaxPid();
+  printf(1, "Maximum PID among active processes: %d\n", maxPid);
+  
   exit();
 }
 

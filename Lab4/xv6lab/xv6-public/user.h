@@ -1,5 +1,6 @@
 struct stat;
 struct rtcdate;
+struct processInfo;
 
 // system calls
 int fork(void);
@@ -41,3 +42,5 @@ int atoi(const char*);
 int hello(void);
 int helloStr(char*);
 int getNumProc(void);
+int getMaxPid(void);
+int getProcInfo(int, struct processInfo*);

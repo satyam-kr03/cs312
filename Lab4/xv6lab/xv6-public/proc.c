@@ -6,6 +6,7 @@
 #include "x86.h"
 #include "proc.h"
 #include "spinlock.h"
+#include "procInfo.h"
 
 struct {
   struct spinlock lock;
@@ -88,6 +89,7 @@ allocproc(void)
 found:
   p->state = EMBRYO;
   p->pid = nextpid++;
+  p->numberContextSwitches = 0;
 
   release(&ptable.lock);
 
@@ -342,12 +344,13 @@ scheduler(void)
       c->proc = p;
       switchuvm(p);
       p->state = RUNNING;
-
       swtch(&(c->scheduler), p->context);
       switchkvm();
 
       // Process is done running for now.
       // It should have changed its p->state before coming back.
+      p->numberContextSwitches++;
+      c->proc = 0;
       c->proc = 0;
     }
     release(&ptable.lock);
@@ -548,4 +551,37 @@ getNumProc(void)
   release(&ptable.lock);
   
   return count;
+}
+
+// Added function to get maximum PID assigned so far
+int
+getMaxPid(void)
+{
+  int maxPid;
+  acquire(&ptable.lock);
+  maxPid = nextpid - 1; // Since nextpid is incremented after assignment
+  release(&ptable.lock);
+  return maxPid;
+}
+
+// Added function to get process information given a PID
+int
+getProcInfo(int pid, struct processInfo* pinfo)
+{
+  struct proc *p; 
+  int found = 0;
+  acquire(&ptable.lock);
+  for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
+    if(p->pid == pid && p->state != UNUSED){
+      pinfo->ppid = (p->parent) ? p->parent->pid :  
+                    -1; // If no parent, set to -1        
+
+      pinfo->psize = p->sz;
+      pinfo->numberContextSwitches = p->numberContextSwitches;
+      found = 1;
+      break;
+    }
+  }
+  release(&ptable.lock);
+  return found ? 0 : -1; // Return 0 if found, -1
 }

@@ -6,6 +6,7 @@
 #include "memlayout.h"
 #include "mmu.h"
 #include "proc.h"
+#include "procInfo.h" // Include the header file with processInfo struct definition
 
 int
 sys_fork(void)
@@ -115,4 +116,24 @@ int
 sys_getNumProc(void)
 {
   return getNumProc();
+}
+
+// Get maximum PID assigned so far
+int
+sys_getMaxPid(void)
+{ 
+  return getMaxPid();
+}
+
+// Get process info by PID
+int
+sys_getProcInfo(void)
+{
+  int pid;
+  struct processInfo* pinfo; 
+  if(argint(0, &pid) < 0)
+    return -1;
+  if(argptr(1, (void*)&pinfo, sizeof(*pinfo)) < 0)
+    return -1;
+  return getProcInfo(pid, pinfo);
 }

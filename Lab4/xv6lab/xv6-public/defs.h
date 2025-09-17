@@ -9,6 +9,7 @@ struct spinlock;
 struct sleeplock;
 struct stat;
 struct superblock;
+struct processInfo; // Forward declaration of processInfo struct
 
 // bio.c
 void            binit(void);
@@ -121,7 +122,9 @@ int             wait(void);
 void            wakeup(void*);
 void            yield(void);
 
-int            getNumProc(void); // Get number of active processes
+int             getNumProc(void); // Get number of active processes
+int             getMaxPid(void); // Get maximum PID among active processes
+int            getProcInfo(int pid, struct processInfo* pinfo); // Get process info
 
 
 // swtch.S
