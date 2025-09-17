@@ -574,7 +574,7 @@ getProcInfo(int pid, struct processInfo* pinfo)
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
     if(p->pid == pid && p->state != UNUSED){
       pinfo->ppid = (p->parent) ? p->parent->pid :  
-                    -1; // If no parent, set to -1        
+                    0; // PID of init process is set to 0 by convention       
 
       pinfo->psize = p->sz;
       pinfo->numberContextSwitches = p->numberContextSwitches;
