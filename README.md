@@ -22,6 +22,24 @@ Remember to compile with -lm flag to include math library
 gcc printlog.c -o printlog -lm
 ```
 
+### Lab 2
+
+Header file stack.h gives the definition of the ADT.
+
+These commands produce .o object files.
+
+```bash
+gcc -c arrstack.c
+gcc -c llstack.c
+```
+
+To build the program:
+
+```bash
+gcc -o stackmain stackmain.c arrstack.o -DARRAY_STACK
+gcc -o stackmain stackmain.c llstack.o
+```
+
 ### Lab 3
 
 ps command to look up info about a process, given it's name:
