@@ -128,7 +128,7 @@ To implement a new system call (dealing with processes):
 - Update syscall.h
 - Update syscall.c
 - Update sysproc.c with a dummy function
-- Implement the function in proc.c
+- Implement the function in [proc.c](Lab4/xv6lab/xv6-public/proc.c)
 
 ```c
 int
