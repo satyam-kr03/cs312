@@ -4,3 +4,6 @@
 # exclude object files
 *.o
 
+hello
+minils
+shell
