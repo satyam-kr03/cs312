@@ -79,3 +79,44 @@ lrwx------ 1 satyam satyam 64 Sep 18 10:37 38 -> /dev/ptmx
 lrwx------ 1 satyam satyam 64 Sep 18 10:37 39 -> /dev/ptmx
 lrwx------ 1 satyam satyam 64 Sep 18 10:37 40 -> /dev/ptmx
 ```
+
+### Lab 4
+
+![alt text](Lab4/q1.png)
+
+```bash
+make clean && make && make qemu-nox
+```
+
+To implement a new system call (simple ones like hello):
+
+- Update user.h
+- Update usys.S
+- Update syscall.h
+- Update syscall.c
+- Implement the function in sysproc.c
+
+Use cprintf to print to the console (in sysproc.c).
+
+```c
+cprintf("Hello, %s!\n", s);
+```
+
+Why no stdio.h in xv6 kernel code?
+
+    stdio.h (and functions like printf) are part of the C standard library (glibc, musl, etc.).
+
+    That library depends on system calls provided by an operating system (like Linux or Windows).
+
+    But in the kernel itself (like xv6’s kernel), there is no libc — the kernel is the lowest layer.
+    → So the kernel cannot use printf
+
+In user programs in xv6
+
+    User programs (those you write in user/) do have a small printf implementation.
+
+    It’s a tiny, xv6-specific version, not full libc printf.
+
+    Defined in user/ulib.c and user/printf.c.
+
+    This user-level printf makes a write system call to print to file descriptors (e.g., fd = 1 for stdout).
