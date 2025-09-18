@@ -1,15 +1,30 @@
 #include <stdio.h>
 
-int main(void)
+int main(int argc, char *argv[])
 {
+  FILE *fp;
   long nc;  // character count
   long nl;  // newline count
   long nw;  // word count
   int c;    // current character
   int in_word = 0; // Flag to track if we're in a word
 
+  // Check if filename was provided as command line argument
+  if (argc != 2) {
+    printf("Error: Invalid number of arguments\n");
+    printf("Usage: %s <filename>\n", argv[0]);
+    return 1;
+  }
+
+  // Try to open the file
+  fp = fopen(argv[1], "r");
+  if (fp == NULL) {
+    printf("Error: Cannot open file '%s'\n", argv[1]);
+    return 1;
+  }
+
   nc = nl = nw = 0;
-  while ((c = getchar()) != EOF) {
+  while ((c = fgetc(fp)) != EOF) {
     ++nc; // Count each character
     
     if (c == '\n')
@@ -33,6 +48,9 @@ int main(void)
     ++nw;
     
   printf("Characters: %ld\nLines: %ld\nWords: %ld\n", nc, nl, nw);
+
+  // Close the file
+  fclose(fp);
 
   return 0;
 }
