@@ -2,7 +2,7 @@
 
 Operating Systems
 
-## Important
+## Notes
 
 ps command to look up info about a process, given it's name:
 
