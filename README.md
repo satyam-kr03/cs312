@@ -4,6 +4,26 @@ Operating Systems
 
 ## Notes
 
+### Lab 1
+
+EOF signal is indicated by Ctrl+D. Alternatively, use an input file or piping using bash.
+
+```
+./charcount < somefile.txt
+```
+
+```
+cat somefile.txt | ./charcount
+```
+
+Remember to compile with -lm flag to include math library
+
+```bash
+gcc printlog.c -o printlog -lm
+```
+
+### Lab 3
+
 ps command to look up info about a process, given it's name:
 
 ```bash
