@@ -151,4 +151,5 @@ getNumProc(void)
 - Update defs.h
 
 Use new header files to define new structs. ([procInfo.h](Lab4/xv6lab/xv6-public/procInfo.h))
+
 Update the [Makefile](Lab4/xv6lab/xv6-public/Makefile) to run new programs ([testcase-procinfo.c](Lab4/xv6lab/xv6-public/testcase-procinfo.c))
