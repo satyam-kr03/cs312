@@ -129,7 +129,6 @@ To implement a new system call (dealing with processes):
 - Update syscall.c
 - Update sysproc.c with a dummy function
 - Implement the function in proc.c
-- Update defs.h
 
 ```c
 int
@@ -148,3 +147,5 @@ getNumProc(void)
   return count;
 }
 ```
+
+- Update defs.h
