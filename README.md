@@ -120,3 +120,31 @@ In user programs in xv6
     Defined in user/ulib.c and user/printf.c.
 
     This user-level printf makes a write system call to print to file descriptors (e.g., fd = 1 for stdout).
+
+To implement a new system call (dealing with processes):
+
+- Update user.h
+- Update usys.S
+- Update syscall.h
+- Update syscall.c
+- Update sysproc.c with a dummy function
+- Implement the function in proc.c
+- Update defs.h
+
+```c
+int
+getNumProc(void)
+{
+  int count = 0;
+  struct proc *p;
+
+  acquire(&ptable.lock);
+  for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
+    if(p->state != UNUSED)
+      count++;
+  }
+  release(&ptable.lock);
+
+  return count;
+}
+```
