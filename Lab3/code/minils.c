@@ -17,7 +17,7 @@ int compare_by_size(const void *a, const void *b) {
     struct file_info *file_a = (struct file_info *)a;
     struct file_info *file_b = (struct file_info *)b;
     // For descending order, b->size comes before a->size
-    return (file_b->size > file_a->size) - (file_b->size < file_a->size);
+    return (file_b->size > file_a->size) ? 1 : (file_b->size < file_a->size) ? -1 : 0;
 }
 
 int main(int argc, char *argv[]) {

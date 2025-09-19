@@ -128,6 +128,7 @@ To implement a new system call (dealing with processes):
 - Update syscall.h
 - Update syscall.c
 - Update sysproc.c with a dummy function
+- Update [proc.h](Lab4/xv6lab/xv6-public/proc.h) to include new fields in struct if required.
 - Implement the function in [proc.c](Lab4/xv6lab/xv6-public/proc.c)
 
 ```c
